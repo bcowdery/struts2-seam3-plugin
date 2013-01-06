@@ -16,6 +16,7 @@ import org.jboss.seam.international.status.builder.BundleKey;
 import org.jboss.seam.international.status.builder.BundleTemplateMessage;
 
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -44,7 +45,7 @@ public class UIMessages implements Serializable {
 
     public void success(String messageKey, Object... args) {
         BundleTemplateMessage template = factory.info(new BundleKey(messagesBundleClasspath, messageKey), args);
-        template.level(null); // no such Level.SUCCESS, the MessageTag treats null as success.
+        template.level(null); // no such Level.SUCCESS, let our MessageTag treat null as success.
         messages.add(template);
     }
 
