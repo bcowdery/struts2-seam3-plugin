@@ -86,7 +86,10 @@ public class WebBeansConversationFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
-        if (!isWebBeansApplication()) return;
+        if (!isWebBeansApplication()) {
+            chain.doFilter(request, response);
+            return;
+        }
 
         WebBeansContext webBeansContext = WebBeansContext.currentInstance();
         webBeansContext.registerService(ConversationService.class, new HttpConversationService((HttpServletRequest) request));
