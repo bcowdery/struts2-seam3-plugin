@@ -132,6 +132,13 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-json-plugin</artifactId>
+            <version>${version.struts2}</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
