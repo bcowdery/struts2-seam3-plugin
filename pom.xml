@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~ Doula Company Client Manager
   ~ Copyright (c) 2012 Brian Cowdery
   ~
   ~ This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
@@ -12,12 +11,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-
-    <parent>
-        <groupId>com.doulacompany</groupId>
-        <artifactId>doulaco-parent</artifactId>
-        <version>1.0</version>
-    </parent>
 
     <groupId>com.pointyspoon</groupId>
     <artifactId>struts2-seam3-plugin</artifactId>
