@@ -13,7 +13,7 @@ The seam3 plugin uses a servlet filter to bind conversation contexts to the requ
 update your web.xml file to include either the `WebBeansConversationFilter` for Apache WebBeans CDI implementations 
 (TomEE) or the `WeldConversationFilter` for Weld (JBoss AS).
 
-```
+```xml
 <!-- Conversation support for non-JSF applications -->
 <filter>
     <filter-name>Seam Conversation Support</filter-name>
@@ -39,7 +39,7 @@ duration of the request. This parameter is optional and can be safely omitted fr
 As with most CDI containers, add an empty beans.xml file to your project to tell the CDI container to scan your project
 for CDI beans.
 
-```
+```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://java.sun.com/xml/ns/javaee"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -55,7 +55,7 @@ for CDI beans.
 
 The `Conversation` object is injectable and can be used to manage a running conversation.
 
-```
+```java
 @Inject Conversation conversation
 
 public void begin() {
@@ -74,7 +74,7 @@ public void end() {
 Conversation scoped beans can be created to allow a unit of work to span multiple request cycles. Any named bean
 annotated with `@ConversationScoped` will automatically be bound to conversation scope.
 
-```
+```java
 @Named
 @ConversationScoped
 public HelloWizard {
@@ -94,7 +94,7 @@ ensure that your links and form submissions contain the conversation ID by using
 
 `ConversationIdParamTag`:
 
-```
+```xml
 <s:a namespace="/wizard" action="next">
     <seam:conversationparam/>
     Next page
@@ -106,7 +106,7 @@ ensure that your links and form submissions contain the conversation ID by using
 
 `ConversationIdFieldTag `:
 
-```
+```xml
 <s:form id="save" action="save">
    <seam:conversationfield/>
    ...
@@ -120,7 +120,7 @@ ensure that your links and form submissions contain the conversation ID by using
 Seam3 Internationlization is used in place of the default Struts2 localization. You can configure localization by 
 creating a CDI producer that provides defaults for locale, timezone and the location of message bundles. 
 
-```
+```java
 public class InternationalDefaultsProducer implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -151,7 +151,7 @@ support for field validations, error messages and action messages that matches
 
 You can apply custom formatting to dates by using the `getText` method to retrieve a date format string:
 
-```
+```xml
 <s:date name="#person.birthday" format="%{getText('pretty.date.format')}"/>
 ```
 
@@ -175,7 +175,7 @@ signup.thanks=Thanks for signing up {0}! You can now log in as {1}.
 
 **Action:**
 
-```
+```java
 @Inject UIMessages messages;
 
 @Action("signup")
@@ -187,7 +187,7 @@ public String signup() {
 
 **View:**
 
-```
+```xml
 <seam:message cssClass="alert"/>
 ```
 
@@ -199,7 +199,7 @@ Struts2 actions extending from `SeamValidatorActionSupport` will perform validat
 validation. As with struts2, validation messages will be added as field errors and can be rendered using standard
 struts2 tags.
 
-```
+```java
 public @Model class Person {
     @Column @NotNull
     private String firstName;
